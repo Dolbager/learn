@@ -6,7 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
-.idea/
+/.idea/
 *.ipr
 *.iws
 # Ignore the default SQLite database.
