@@ -1,0 +1,9 @@
+<p>
+	<%= @product.name %>
+</p>
+<hr>
+<p>
+	<%= @product.description %>
+</p>
+<br>
+<%= button_to "All Products", products_path, :method => :get, :class => "btn btn-default" %>
