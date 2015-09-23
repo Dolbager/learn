@@ -1,9 +1,31 @@
-<p>
+<h1>Detail info</h1>
+<br>
+<p>	
+	<label>Name: </label>
 	<%= @product.name %>
 </p>
 <hr>
+<% if @product.description? %>
 <p>
+	<label>Description: </label>
 	<%= @product.description %>
 </p>
+<% else %>
+<p>
+	<label>No Description</label>
+</p>
+<% end %>
+<% if @product.image.url %>
+<p>
+	<label>Image</label>
+</p>
+<p>
+	<%= image_tag @product.image.url %>
+</p>
+<% else %>
+<p>
+	<label>No image</label>
+</p>
+<% end %>
 <br>
 <%= button_to "All Products", products_path, :method => :get, :class => "btn btn-default" %>

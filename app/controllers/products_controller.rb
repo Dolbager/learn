@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 		if @product.save
+			flash[:notice] = "Product #{@product.name} successfully created"
 			redirect_to :action => 'show' , :id => @product.id
 		else
 			render 'new'
@@ -44,8 +45,15 @@ class ProductsController < ApplicationController
 		redirect_to products_path
 	end
 
+	def upload
+  		uploaded_io = params[:product][:picture]
+  		File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+    		file.write(uploaded_io.read)
+  		end
+	end
+
 	private
 	def product_params
-		params.require(:product).permit(:name, :description)
+		params.require(:product).permit(:name, :description, :image)
 	end
 end

@@ -1,26 +1,30 @@
 <% if user_signed_in? %>
-<%= button_to "New product", new_product_path, :method => :get, :class => "btn btn-default" %></p>
+<%= button_to "New product", new_product_path, :method => :get, :class => "btn btn-primary" %></p>
 <table class="table table-hover">
 	<tr>
 		<th>Name</th>
 		<th>Edit</th>
+		<th>Created</th>
 		<th>Delete</th>
 	</tr>
 	<% @products.each do |p| %>
 		<tr>
 			<td><%= link_to "#{p.name}", product_path(p) %></td>
 			<td><%= link_to 'Edit', edit_product_path(p) %></td>
-			<td><%= link_to 'Destroy', product_path(p), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<td><%= p.created_at %></td>
+			<td><%= link_to ' Delete', product_path(p), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger fa fa-trash-o' %></td>
 		</tr>
 	<% end %>
 <% else %>
 <table class="table table-hover">
 	<tr>
 		<th>Name</th>
+		<th>Created</th>
 	</tr>
 	<% @products.each do |p| %>
 		<tr>
 			<td><%= link_to "#{p.name}", product_path(p) %></td>
+			<td><%= p.created_at %></td>
 		</tr>
 	<% end %>
 <% end %>
